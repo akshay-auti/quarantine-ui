@@ -44,7 +44,9 @@
       <q-table title="Assesments" 
         :data="this.getTableData" 
         :columns="columns" 
-        row-key="id" />
+        row-key="id"
+        :pagination.sync="pagination"
+        @request="onRequest" />
       </div>
       <div class="results-right">
       </div>
@@ -78,11 +80,18 @@ export default {
       "getMediumRisk",
       "getHighRisk",
       "getTableData",
-      "getCSVData"
+      "getCSVData",
+      "getNextTableData"
     ])
   },
   data() {
     return {
+      pagination: {
+        page: 1,
+        rowsPerPage: 100,
+        rowsNumber: 23000
+      },
+      data: [],
       columns: [
         {
           name: "name",
@@ -101,8 +110,26 @@ export default {
         { name: "district", label: "District", field: "district" },
       ]
     };
-  }
-};
+  },
+  methods: {
+    ...mapActions("covid", ["paginationSearch"]),
+
+    onRequest (props) {
+      const { page, rowsPerPage } = props.pagination
+      
+      // fetch data from "server"
+      const returnedData = this.paginationSearch(this.getNextTableData);
+      console.log(props.pagination.page)
+
+      // clear out existing data and add new
+      // this.data.splice(0, this.data.length, ...returnedData)
+
+      // don't forget to update local pagination object
+      this.pagination.page = page
+      this.pagination.rowsPerPage = rowsPerPage
+    }
+},
+}
 </script>
 
 <style scoped>
