@@ -36,10 +36,10 @@
     </div>
     <div class="content">
       <div class="display-download">
-      <download-csv :data="this.getTableData">CSV 
+      <download-csv :data="this.getCSVData">CSV 
         <img src="~assets/download_icon.png" width="18%" height="18%"/>
       </download-csv>
-    </div>
+    </div>  
       <div class="results-left">
       <q-table title="Assesments" 
         :data="this.getTableData" 
@@ -77,7 +77,8 @@ export default {
       "getLowRisk",
       "getMediumRisk",
       "getHighRisk",
-      "getTableData"
+      "getTableData",
+      "getCSVData"
     ])
   },
   data() {
@@ -157,6 +158,7 @@ export default {
   width: 4%;
   height: 4%;
   /* border: 1px solid blue; */
+  cursor: pointer;
 }
 
 </style>

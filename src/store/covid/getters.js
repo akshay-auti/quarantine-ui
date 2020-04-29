@@ -66,3 +66,35 @@ export const getTableData = (state) => {
     return Object.freeze(state.quizes.results)
     // return state.quizes.results;
 };
+
+export const getCSVData = (state) => {
+    var json_data = [];
+    var res = state.quizes.results;
+    for (var i = 0; i < res.length; i++) {
+        var id = res[i]['id'];
+        var language = res[i]['language']
+        var name = res[i]['name']
+        var phone= res[i]['phone']
+        var pincode = res[i]['pincode']
+        var address_1= res[i]['address_1']
+        var address_2= res[i]['address_2']
+        var latitude= res[i]['latitude']
+        var longitude= res[i]['longitude']
+        var age = res[i]['age']
+        var gender = res[i]['gender']['text']
+        var temperature = res[i]['temperature']['text']
+        var symptoms = res[i]['symptoms']['text']
+        var additionalSymptoms = res[i]['additionalSymptoms']['text']
+        var exposureHistory = res[i]['exposureHistory']['text']
+        var underlyingConditions = res[i]['underlyingConditions']['text']
+        var progress = res[i]['progress']['text']
+        var risk = res[i]['risk']
+        var timestamp = res[i]['timestamp']
+        json_data.push({id: id, language: language, name: name, phone: phone, 
+            pincode: pincode, address_1: address_1, address_2:address_2, latitude: latitude, 
+            longitude: longitude, age: age, gender: gender, temperature: temperature, symptoms: symptoms, 
+            additionalSymptoms: additionalSymptoms, exposureHistory: exposureHistory, 
+            underlyingConditions: underlyingConditions, progress: progress, risk: risk, timestamp: timestamp})
+    }
+    return json_data;
+};

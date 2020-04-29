@@ -62,12 +62,9 @@ progressMap.set('Worsened Considerably',35);
 
 const url = (age_gte = '', age_lte = '', from_date = '', to_date = '', temperature = '', symptoms = '', additionalSymptoms = '', gender = '', risk = '',exposureHistory = '', underlyingConditions = '', progress = '') => `https://covid-19api.maharashtra.gov.in/api/search/?age_gte=${age_gte}&age_lte=${age_lte}&from_date=${from_date}&to_date=${to_date}&temperature=${temperature}&symptoms=${symptoms}&additionalSymptoms=${additionalSymptoms}&gender=${gender}&risk=${risk}&exposureHistory=${exposureHistory}&underlyingConditions=${underlyingConditions}&progress=${progress}`
 
-// categoryDetails: (storeUid, sectionSlug, categorySlug) => `${baseUrl}/stores/${storeUid}/sections/${sectionSlug}/categories/${categorySlug}/`,
-
 export const search = ({ commit }, payload) => {
 // console.log("-------------sadasdsa",payload);
 var fromDate = JSON.stringify(payload.fromDate).slice(1,11);
-console.log(payload.fromDate)
 var toDate = JSON.stringify(payload.toDate).slice(1,11);
 
 var temperatureId, symptomId, additionalSymptomsId, genderId, exposureID;
