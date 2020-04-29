@@ -88,7 +88,9 @@ export default {
           name: "name",
           required: true,
           label: "Name",
-          align: "left"
+          field: "name",
+          align: "left",
+          // sortable: true
         },
         {
           name: "phone",

@@ -71,30 +71,13 @@ export const getCSVData = (state) => {
     var json_data = [];
     var res = state.quizes.results;
     for (var i = 0; i < res.length; i++) {
-        var id = res[i]['id'];
-        var language = res[i]['language']
-        var name = res[i]['name']
-        var phone= res[i]['phone']
-        var pincode = res[i]['pincode']
-        var address_1= res[i]['address_1']
-        var address_2= res[i]['address_2']
-        var latitude= res[i]['latitude']
-        var longitude= res[i]['longitude']
-        var age = res[i]['age']
-        var gender = res[i]['gender']['text']
-        var temperature = res[i]['temperature']['text']
-        var symptoms = res[i]['symptoms']['text']
-        var additionalSymptoms = res[i]['additionalSymptoms']['text']
-        var exposureHistory = res[i]['exposureHistory']['text']
-        var underlyingConditions = res[i]['underlyingConditions']['text']
-        var progress = res[i]['progress']['text']
-        var risk = res[i]['risk']
-        var timestamp = res[i]['timestamp']
-        json_data.push({id: id, language: language, name: name, phone: phone, 
-            pincode: pincode, address_1: address_1, address_2:address_2, latitude: latitude, 
-            longitude: longitude, age: age, gender: gender, temperature: temperature, symptoms: symptoms, 
-            additionalSymptoms: additionalSymptoms, exposureHistory: exposureHistory, 
-            underlyingConditions: underlyingConditions, progress: progress, risk: risk, timestamp: timestamp})
+        json_data.push({
+            id: res[i]['id'], language: res[i]['language'], name: res[i]['name'], phone: res[i]['phone'],
+            pincode: res[i]['pincode'], address_1: res[i]['address_1'], address_2: res[i]['address_2'], latitude: res[i]['latitude'],
+            longitude: res[i]['longitude'], age: res[i]['age'], gender: res[i]['gender']['text'], temperature: res[i]['temperature']['text'], symptoms: res[i]['symptoms']['text'],
+            additionalSymptoms: res[i]['additionalSymptoms']['text'], exposureHistory: res[i]['exposureHistory']['text'],
+            underlyingConditions: res[i]['underlyingConditions']['text'], progress: res[i]['progress']['text'], risk: res[i]['risk'], timestamp: res[i]['timestamp']
+        })
     }
     return json_data;
 };
