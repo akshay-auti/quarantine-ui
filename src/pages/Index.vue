@@ -36,10 +36,22 @@
     </div>
     <div class="display-download">
         <download-csv :data="this.getCSVData">
-          CSV
-          <img src="~assets/download_icon.png" width="18%" height="18%" />
+         <button class="btn"> CSV
+          <img src="~assets/download_icon.png" width="25%" height="20%" />
+           </button>
         </download-csv>
+       
       </div>
+     <div class="content">
+    <div id="outer" class="paging-button">
+      <div class="inner">
+        <button v-on:click="this.onPrevious" :disabled="!this.getPreviousTableData" class="btn">&laquo; Previous </button>
+      </div>
+      <div class="inner">
+        <button v-on:click="this.onNext" :disabled="!this.getNextTableData" class="btn">Next &raquo;</button>
+      </div>
+    </div>
+    </div>  
     <div class="content">
       <div class="results-left">
         <table>
@@ -70,16 +82,6 @@
         />-->
       </div>
       <!-- <div class="results-right"></div> -->
-    </div>
-    <div class="content">
-    <div id="outer">
-      <div class="inner">
-        <button v-on:click="this.onPrevious" :disabled="!this.getPreviousTableData">Previous</button>
-      </div>
-      <div class="inner">
-        <button v-on:click="this.onNext" :disabled="!this.getNextTableData">Next</button>
-      </div>
-    </div>
     </div>
   </div>
   <!-- <img alt="Quasar logo" src="~assets/quasar-logo-full.svg" />
@@ -190,6 +192,25 @@ export default {
 </script>
 
 <style scoped>
+
+.btn {
+  background-color:#1976d2; 
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: DodgerBlue;
+}
+
+.paging-button {
+  padding-left: 500px;  
+}
+
 .numberDisplay {
   font-size: 40px;
   font-weight: 600;
@@ -223,7 +244,6 @@ export default {
 
 .content {
   flex: 10;
-  display: flex;
   flex-direction: row;
 }
 
@@ -239,10 +259,12 @@ export default {
 }
 
 .display-download {
-  width: 4%;
-  height: 4%;
-  /* border: 1px solid blue; */
-  cursor: pointer;
+  width: 8%;
+    height: 4%;
+    /* border: 1px solid blue; */
+    float: right;
+    font-size: 15px;
+    margin-left: 1095px;
 }
 
 /* table {
@@ -323,7 +345,7 @@ tr:nth-child(2n):hover {
     text-transform: uppercase;
   }
 }
-button {
+/*button {
   background-color: #1976d2; /* blue */
   cursor: pointer;
   /* border: none;
@@ -332,15 +354,38 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px; */
-}
+  font-size: 16px; 
+} */
 
 #outer {
   width: 100%;
   text-align:center;
+  margin-top: 5px;
+  padding-left: 500px;
 }
 .inner {
   padding: 10px;
   display: inline-block;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #4CAF50;
+  color: white;
 }
 </style>
