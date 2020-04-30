@@ -65,10 +65,10 @@
           </thead>
           <tbody>
             <tr :key="data.id" v-for="data in this.getCSVData">
-              <td>{{data.name}}</td>
-              <td>{{data.phone}}</td>
-              <td>{{data.risk}}</td>
-              <td>{{data.district}}</td>
+              <td>{{data.name ? data.name: '--'}}</td>
+              <td>{{data.phone ? data.phone: '--'}}</td>
+              <td>{{data.risk ? data.risk: '--'}}</td>
+              <td>{{data.district ? data.district: '--'}}</td>
             </tr>
           </tbody>
         </table>
@@ -267,20 +267,6 @@ export default {
     margin-left: 1095px;
 }
 
-/* table {
-  border-collapse: collapse;
-  overflow-x:auto;
-}
-
-table, th, td {
-  border: 1px solid black;
-}
-
-th, td {
-  padding: 15px;
-  text-align: left;
-} */
-
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body {
   font-family: "Open Sans", sans-serif;
@@ -347,7 +333,7 @@ tr:nth-child(2n):hover {
 }
 /*button {
   background-color: #1976d2; /* blue */
-  cursor: pointer;
+  /* cursor: pointer; */
   /* border: none;
   color: white;
   padding: 5px 20px;
@@ -356,10 +342,9 @@ tr:nth-child(2n):hover {
   display: inline-block;
   font-size: 16px; 
 } */
-
 #outer {
   width: 100%;
-  text-align:center;
+  /* text-align:center; */
   margin-top: 5px;
   padding-left: 500px;
 }
