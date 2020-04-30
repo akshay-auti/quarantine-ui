@@ -70,14 +70,25 @@ export const getTableData = (state) => {
 export const getCSVData = (state) => {
     var json_data = [];
     var res = state.quizes.results;
-    for (var i = 0; i < res.length; i++) {
-        json_data.push({
-            id: res[i]['id'], language: res[i]['language'], name: res[i]['name'], phone: res[i]['phone'],
-            pincode: res[i]['pincode'], address_1: res[i]['address_1'], address_2: res[i]['address_2'], latitude: res[i]['latitude'],
-            longitude: res[i]['longitude'], age: res[i]['age'], gender: res[i]['gender']['text'], temperature: res[i]['temperature']['text'], symptoms: res[i]['symptoms']['text'],
-            additionalSymptoms: res[i]['additionalSymptoms']['text'], exposureHistory: res[i]['exposureHistory']['text'],
-            underlyingConditions: res[i]['underlyingConditions']['text'], progress: res[i]['progress']['text'], risk: res[i]['risk'], timestamp: res[i]['timestamp']
-        })
+    if(res){
+        for (var i = 0; i < res.length; i++) {
+            json_data.push({
+                id: res[i]['id'], language: res[i]['language'], name: res[i]['name'], phone: res[i]['phone'],
+                pincode: res[i]['pincode'], address_1: res[i]['address_1'], address_2: res[i]['address_2'], latitude: res[i]['latitude'],
+                longitude: res[i]['longitude'], age: res[i]['age'], gender: res[i]['gender']['text'], temperature: res[i]['temperature']['text'], symptoms: res[i]['symptoms']['text'],
+                additionalSymptoms: res[i]['additionalSymptoms']['text'], exposureHistory: res[i]['exposureHistory']['text'],
+                underlyingConditions: res[i]['underlyingConditions']['text'], progress: res[i]['progress']['text'], risk: res[i]['risk'], timestamp: res[i]['timestamp']
+            })
+        }
     }
+    
     return json_data;
+};
+
+export const getNextTableData = (state) => {
+    return state.quizes.next;
+};
+
+export const getPreviousTableData = (state) => {
+    return state.quizes.previous;
 };
