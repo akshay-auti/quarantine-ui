@@ -5,31 +5,31 @@ export function someGetter (state) {
 
 
 export const getSymptoms = (state) => {
-    return state.symptoms;
+    return state.options.symptoms ? state.options.symptoms.choices : [];
 };
 export const getTemperature = (state) => {
-    return state.temperature;
+    return state.options.temperature ? state.options.temperature.choices : [];
 };
 export const getAdditional = (state) => {
-    return state.additionalSymptoms;
+    return state.options.additionalSymptoms ? state.options.additionalSymptoms.choices : [];
 };
 export const getDistrict = (state) => {
     return state.district;
 };
 export const getGender = (state) => {
-    return state.gender;
+    return state.options.gender ? state.options.gender.choices : [];
 };
 export const getRisk = (state) => {
     return state.risk;
 };
 export const getExposure = (state) => {
-    return state.exposure;
+    return state.options.exposureHistory ? state.options.exposureHistory.choices : [];
 };
 export const getUnderlying = (state) => {
-    return state.underlying;
+    return state.options.underlyingConditions ? state.options.underlyingConditions.choices : [];
 };
 export const getProgress = (state) => {
-    return state.progress;
+    return state.options.progress ? state.options.progress.choices : [];
 };
 
 export const getTotalQuizes = (state) => {
@@ -37,28 +37,14 @@ export const getTotalQuizes = (state) => {
 };
 
 export const getLowRisk = (state) => {
-    // console.log("low---------", state.quizes.low)
-    // var t = state.quizes.results.filter(elem => {return elem.risk === 'low';});
-    // return state.quizes.low;
-    // var t = state.quizes.filter(elem => {
-    //     return elem.risk === 'low';
-    // });
     return state.quizes.low;
 };
 
 export const getMediumRisk = (state) => {
-    // var t = state.quizes.filter(elem => {
-    //     return elem.risk === 'medium';
-    // });
-    // var t = state.quizes.results.filter(elem => {return elem.risk === 'medium';});
     return state.quizes.medium;
 };
 
 export const getHighRisk = (state) => {
-    // var t = state.quizes.filter(elem => {
-    //     return elem.risk === 'high';
-    // });
-    // var t = state.quizes.results.filter(elem => {return elem.risk === 'high';});
     return state.quizes.high;
 };
 

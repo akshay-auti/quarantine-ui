@@ -48,6 +48,9 @@
               v-model="selTemp"
               multiple
               use-chips
+              map-options
+              emit-value
+              option-label="text"
               :options="getTemperature"
               label="Temperature"
               style="width: 250px"
@@ -62,6 +65,9 @@
               v-model="selSymptoms"
               multiple
               use-chips
+              map-options
+              emit-value
+              option-label="text"
               :options="getSymptoms"
               label="Symptoms"
               style="width: 250px"
@@ -76,6 +82,9 @@
               v-model="selAdditional"
               multiple
               use-chips
+              map-options
+              emit-value
+              option-label="text"
               :options="getAdditional"
               label="Additional Symptoms"
               style="width: 250px"
@@ -108,6 +117,9 @@
               v-model="selGender"
               multiple
               use-chips
+              map-options
+              emit-value
+              option-label="text"
               :options="getGender"
               label="Gender"
               style="width: 250px"
@@ -136,6 +148,9 @@
               v-model="selExposure"
               multiple
               use-chips
+              map-options
+              emit-value
+              option-label="text"
               :options="getExposure"
               label="Exposure History"
               style="width: 250px"
@@ -150,6 +165,9 @@
               multiple
               dense
               use-chips
+              map-options
+              emit-value
+              option-label="text"
               :options="getUnderlying"
               label="Underlying Conditions"
               style="width: 250px"
@@ -164,6 +182,9 @@
               v-model="selProgress"
               multiple
               use-chips
+              map-options
+              emit-value
+              option-label="text"
               :options="getProgress"
               label="Progress"
               style="width: 250px"
@@ -190,9 +211,10 @@ export default {
   mounted: function() {
     this.neeVal();
     this.fetchDistrict();
+    this.fetchOptions();
   },
   methods: {
-    ...mapActions("covid", ["search", 'fetchDistrict']),
+    ...mapActions("covid", ["search", 'fetchDistrict', 'fetchOptions']),
     neeVal(val) {
       var requestObject = {
         fromDate: new Date(this.fromDate),
