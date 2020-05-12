@@ -90,6 +90,10 @@
               v-model="selDistrict"
               multiple
               use-chips
+              map-options
+              emit-value
+              option-value="id"
+              option-label="name"
               :options="getDistrict"
               label="District"
               style="width: 250px"
@@ -185,9 +189,10 @@ export default {
 
   mounted: function() {
     this.neeVal();
+    this.fetchDistrict();
   },
   methods: {
-    ...mapActions("covid", ["search"]),
+    ...mapActions("covid", ["search", 'fetchDistrict']),
     neeVal(val) {
       var requestObject = {
         fromDate: new Date(this.fromDate),
@@ -197,6 +202,7 @@ export default {
         gender: this.selGender === null ? [] : this.selGender,
         temperature: this.selTemp === null ? [] : this.selTemp,
         addSymptoms: this.selAdditional === null ? [] : this.selAdditional,
+        district: this.selDistrict === null ? [] : this.selDistrict,
         risk: this.selRisk === null ? [] : this.selRisk,
         symptoms: this.selSymptoms === null ? [] : this.selSymptoms,
         travelHistory: this.selExposure === null ? [] : this.selExposure,

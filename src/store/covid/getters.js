@@ -74,10 +74,15 @@ export const getCSVData = (state) => {
         for (var i = 0; i < res.length; i++) {
             json_data.push({
                 id: res[i]['id'], language: res[i]['language'], name: res[i]['name'], phone: res[i]['phone'],
-                pincode: res[i]['pincode'], address_1: res[i]['address_1'], address_2: res[i]['address_2'], latitude: res[i]['latitude'],
-                longitude: res[i]['longitude'], age: res[i]['age'], gender: res[i]['gender']['text'], temperature: res[i]['temperature']['text'], symptoms: res[i]['symptoms']['text'],
-                additionalSymptoms: res[i]['additionalSymptoms']['text'], exposureHistory: res[i]['exposureHistory']['text'],
-                underlyingConditions: res[i]['underlyingConditions']['text'], progress: res[i]['progress']['text'], risk: res[i]['risk'], timestamp: res[i]['timestamp']
+                pincode: res[i]['pincode'], address_1: res[i]['address_1'], address_2: res[i]['address_2'], 
+                latitude: res[i]['latitude'], longitude: res[i]['longitude'], age: res[i]['age'], 
+                gender: res[i]['gender']['text'], temperature: res[i]['temperature']['text'], 
+                symptoms: res[i]['symptoms']['text'], additionalSymptoms: res[i]['additionalSymptoms']['text'], 
+                exposureHistory: res[i]['exposureHistory']['text'], 
+                underlyingConditions: res[i]['underlyingConditions']['text'], 
+                progress: res[i]['progress']['text'], risk: res[i]['risk'], timestamp: res[i]['timestamp'],
+                taluka: res[i]['taluk'] ? res[i]['taluk']['name'] : '', 
+                district: res[i]['taluk'] ? res[i]['taluk']['district']['name'] : ''
             })
         }
     }

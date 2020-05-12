@@ -6,7 +6,9 @@ export function someAction (context) {
 import axios from "axios";
 import { getTemperature } from "./getters";
 
-const loginUrl = "https://covid-19api.maharashtra.gov.in/api-token-auth/"
+const loginUrl = "https://covid-19api.maharashtra.gov.in/api-token-auth/";
+
+const district = "https://covid-19api.maharashtra.gov.in/api/districts/";
 
 // const url = "https://covid-19api.maharashtra.gov.in/api/search/";
 
@@ -60,7 +62,10 @@ progressMap.set('No Change', 33);
 progressMap.set('Worsened', 34);
 progressMap.set('Worsened Considerably', 35);
 
-const url = (age_gte = '', age_lte = '', from_date = '', to_date = '', temperature = '', symptoms = '', additionalSymptoms = '', gender = '', risk = '', exposureHistory = '', underlyingConditions = '', progress = '') => `https://covid-19api.maharashtra.gov.in/api/search/?age_gte=${age_gte}&age_lte=${age_lte}&from_date=${from_date}&to_date=${to_date}&temperature=${temperature}&symptoms=${symptoms}&additionalSymptoms=${additionalSymptoms}&gender=${gender}&risk=${risk}&exposureHistory=${exposureHistory}&underlyingConditions=${underlyingConditions}&progress=${progress}`
+const url = (age_gte = '', age_lte = '', from_date = '', to_date = '', temperature = '', 
+             symptoms = '', additionalSymptoms = '', gender = '', risk = '', exposureHistory = '', 
+             underlyingConditions = '', progress = '', district = '') => 
+             `https://covid-19api.maharashtra.gov.in/api/search/?age_gte=${age_gte}&age_lte=${age_lte}&from_date=${from_date}&to_date=${to_date}&temperature=${temperature}&symptoms=${symptoms}&additionalSymptoms=${additionalSymptoms}&gender=${gender}&risk=${risk}&exposureHistory=${exposureHistory}&underlyingConditions=${underlyingConditions}&progress=${progress}&district=${district}`;
 
 export const search = ({ commit }, payload) => {
     // console.log("-------------sadasdsa",payload);
@@ -79,6 +84,8 @@ export const search = ({ commit }, payload) => {
     var riskDetails = payload.risk;
     var underlyingDetails = payload.underlying;
     var progressDetails = payload.progress;
+    var districtDetails = payload.district;
+    console.log('------------------',districtDetails);
 
     // Concatenation of Id's separated by comma.
     for (var i = 0; i < temperatureDetails.length; i++) {
@@ -131,7 +138,9 @@ export const search = ({ commit }, payload) => {
             const auth = { headers: { Authorization: `Token ${response.data.token}` } };
             if (auth) {
                 axios
-                    .get(url(payload.ageGTE, payload.ageLTE, fromDate, toDate, temperatureId, symptomId, additionalSymptomsId, genderId, riskId, exposureID, underlyingId, progressId), auth)
+                    .get(url(payload.ageGTE, payload.ageLTE, fromDate, toDate, temperatureId, symptomId, 
+                            additionalSymptomsId, genderId, riskId, exposureID, underlyingId, progressId, districtDetails), 
+                            auth)
                     .then(response => {
                         commit("UPDATE_QUIZ_DATA", response.data);
                     })
@@ -162,3 +171,8 @@ export const paginationSearch = ({ commit }, paginationURL) => {
         }).catch(error => console.log(error));
 };
 
+export const fetchDistrict = ({ commit }) => {
+    axios.get(district).then(response => {
+        commit("UPDATE_DISTRICT_DATA", response.data);
+    });
+};

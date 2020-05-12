@@ -61,6 +61,7 @@
               <th>Phone</th>
               <th>Risk</th>
               <th>District</th>
+              <th>Taluka</th>
             </tr>
           </thead>
           <tbody>
@@ -69,6 +70,7 @@
               <td>{{data.phone ? data.phone: '--'}}</td>
               <td>{{data.risk ? data.risk: '--'}}</td>
               <td>{{data.district ? data.district: '--'}}</td>
+              <td>{{data.taluka ? data.taluka: '--'}}</td>
             </tr>
           </tbody>
         </table>
