@@ -18,7 +18,7 @@
                               <div style="margin-top:.5em" class="sixteen wide column">
                                  <div class="ui fitted divider"></div>
                                  <div style="color:#8cc63f;margin-top:.5em" class="ui center aligned header">
-                                 	COVID-19 (Coronavirus) - Self Assessment Tool - Dashboard Login
+                                 	COVID-19 (Coronavirus) - Self-Assessment Dashboard
                          		 </div>
                               </div>
                            </div>
@@ -31,7 +31,7 @@
                         <!-- <div class="ui active centered inline loader"></div> -->
                         	<form class="ui form" @submit.prevent="handleLogin">
 							   <div class="required field">
-							      <label>Log In</label>
+							      <label>Username</label>
 							      <div class="ui fluid input"><input id="username" type="text" v-model="username" required autofocus></div>
 							   </div>
 							   <div class="required field">

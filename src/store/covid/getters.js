@@ -58,6 +58,8 @@ export const getCSVData = (state) => {
             res[i]['additionalSymptoms'].forEach(element => {additionalSymptomsList.push(element.text)})
             var underlyingConditionsList = [];
             res[i]['underlyingConditions'].forEach(element => {underlyingConditionsList.push(element.text)})
+            let date = new Date(res[i]['timestamp']);
+            // console.log(date.toDateString())
             json_data.push({
                 id: res[i]['id'], language: res[i]['language'], name: res[i]['name'], phone: res[i]['phone'],
                 pincode: res[i]['pincode'], address: res[i]['address'], 
@@ -67,9 +69,13 @@ export const getCSVData = (state) => {
                 additionalSymptoms: additionalSymptomsList, 
                 exposureHistory: res[i]['exposureHistory']['text'], 
                 underlyingConditions: underlyingConditionsList, 
-                progress: res[i]['progress']['text'], risk: res[i]['risk'], timestamp: res[i]['timestamp'],
+                progress: res[i]['progress']['text'], risk: res[i]['risk'], 
+                timestamp: date.toDateString(),
                 taluka: res[i]['taluk'] ? res[i]['taluk']['name'] : '', 
-                district: res[i]['taluk'] ? res[i]['taluk']['district']['name'] : ''
+                district: res[i]['taluk'] ? res[i]['taluk']['district']['name'] : '',
+                Additional_Health_Remarks: res[i]['additionalRemarks'],
+                Name_of_Authorised_Person_filling_the_nformation: res[i]['referral'],
+                Mobile_Number_of_Authorised_Person_filling_the_information: res[i]['referralName'],
             })
         }
     }

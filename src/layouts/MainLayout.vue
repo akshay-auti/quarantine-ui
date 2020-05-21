@@ -7,7 +7,16 @@
       </q-toolbar>
     </q-header>
 
+    <q-footer elevated>
+        <q-toolbar>
+          <q-toolbar-title>© Government of Maharashtra Initiative. All Rights Reserved.</q-toolbar-title>
+        </q-toolbar>
+    </q-footer>
+
     <q-drawer show-if-above bordered content-class="bg-grey-1">
+      <!-- <div class="three wide computer four wide mobile three wide tablet column">
+        <img src="https://covid-19.maharashtra.gov.in/static/images/GoM.png" class="ui tiny image"/>
+        </div> -->
       <q-list>
         <q-item-label header class="text-grey-8">Filters</q-item-label>
         <q-item>
@@ -209,11 +218,16 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "MainLayout",
 
-mounted: function() {
-      this.neeVal();
+  created(){
+    this.neeVal();
+  },
+   mounted: function() {
       this.fetchDistrict();
       this.fetchOptions();
+      
   },
+
+
   methods: {
     ...mapActions("covid", ["search", 'fetchDistrict', 'fetchOptions', 'logout']),
     neeVal(val) {
@@ -225,14 +239,13 @@ mounted: function() {
         gender: this.selGender === null ? [] : this.selGender,
         temperature: this.selTemp === null ? [] : this.selTemp,
         addSymptoms: this.selAdditional === null ? [] : this.selAdditional,
-        district: this.selDistrict === null ? ['0'] : this.selDistrict,
+        district: this.selDistrict === null ? [] : this.selDistrict,
         risk: this.selRisk === null ? [] : this.selRisk,
         symptoms: this.selSymptoms === null ? [] : this.selSymptoms,
         travelHistory: this.selExposure === null ? [] : this.selExposure,
         progress: this.selProgress === null ? [] : this.selProgress,
         underlying: this.selUnderlying === null ? [] : this.selUnderlying
       };
-      console.log(JSON.stringify(requestObject));
       this.search(requestObject);
     },
     handleLogOut: function(){
