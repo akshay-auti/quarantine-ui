@@ -14,6 +14,13 @@ export const getAdditional = (state) => {
     return state.options.additionalSymptoms ? state.options.additionalSymptoms.choices : [];
 };
 export const getDistrict = (state) => {
+    // if(state.district){
+    //     state.district.splice(0,0,{'id': ['1','2','3','4','5','6','7','8','9','10',
+    //                         '11','12','13','14','15','16','17','18','19','20',
+    //                         '21','22','23','24','25','26','27','28','29','30',
+    //                         '31','32','33','34'], 'name': 'All Maharashtra Districts'})
+    //     state.district.splice(1,0,{'id': '0', 'name': 'Non Maharashtra districts'})                         
+    // }
     return state.district;
 };
 export const getGender = (state) => {
@@ -31,55 +38,57 @@ export const getUnderlying = (state) => {
 export const getProgress = (state) => {
     return state.options.progress ? state.options.progress.choices : [];
 };
-
 export const getTotalQuizes = (state) => {
     return state.quizes.count;
 };
-
 export const getLowRisk = (state) => {
     return state.quizes.low;
 };
-
 export const getMediumRisk = (state) => {
     return state.quizes.medium;
 };
-
 export const getHighRisk = (state) => {
     return state.quizes.high;
 };
-
 export const getTableData = (state) => {
     return Object.freeze(state.quizes.results)
     // return state.quizes.results;
 };
-
 export const getCSVData = (state) => {
     var json_data = [];
     var res = state.quizes.results;
     if(res){
         for (var i = 0; i < res.length; i++) {
+            var symptomsList = [];
+            res[i]['symptoms'].forEach(element => {symptomsList.push(element.text)});
+            var additionalSymptomsList = [];
+            res[i]['additionalSymptoms'].forEach(element => {additionalSymptomsList.push(element.text)})
+            var underlyingConditionsList = [];
+            res[i]['underlyingConditions'].forEach(element => {underlyingConditionsList.push(element.text)})
             json_data.push({
                 id: res[i]['id'], language: res[i]['language'], name: res[i]['name'], phone: res[i]['phone'],
-                pincode: res[i]['pincode'], address_1: res[i]['address_1'], address_2: res[i]['address_2'], 
+                pincode: res[i]['pincode'], address: res[i]['address'], 
                 latitude: res[i]['latitude'], longitude: res[i]['longitude'], age: res[i]['age'], 
                 gender: res[i]['gender']['text'], temperature: res[i]['temperature']['text'], 
-                symptoms: res[i]['symptoms']['text'], additionalSymptoms: res[i]['additionalSymptoms']['text'], 
+                symptoms: symptomsList, 
+                additionalSymptoms: additionalSymptomsList, 
                 exposureHistory: res[i]['exposureHistory']['text'], 
-                underlyingConditions: res[i]['underlyingConditions']['text'], 
+                underlyingConditions: underlyingConditionsList, 
                 progress: res[i]['progress']['text'], risk: res[i]['risk'], timestamp: res[i]['timestamp'],
                 taluka: res[i]['taluk'] ? res[i]['taluk']['name'] : '', 
                 district: res[i]['taluk'] ? res[i]['taluk']['district']['name'] : ''
             })
         }
     }
-    
     return json_data;
 };
-
 export const getNextTableData = (state) => {
     return state.quizes.next;
 };
-
 export const getPreviousTableData = (state) => {
     return state.quizes.previous;
+};
+export const getLoginStatus = (state) => {
+    console.log("getters--------------->",state.loggedIn)
+    return state.loggedIn;
 };

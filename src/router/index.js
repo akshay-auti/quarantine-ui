@@ -3,6 +3,10 @@ import VueRouter from 'vue-router'
 
 import routes from './routes'
 
+import {getters} from '../store'
+
+// import  Store  from '@/store'
+
 Vue.use(VueRouter)
 
 /*
@@ -24,6 +28,19 @@ export default function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
+  })
+
+  Router.beforeEach((to, from, next) => {
+    console.log("store.getters.getLoginStatus",localStorage.getItem('user'))
+      if (!localStorage.getItem('user')) {
+        next('/')
+        return
+      }
+      else{
+        console.log("else")
+        next()
+      }
+       
   })
 
   return Router

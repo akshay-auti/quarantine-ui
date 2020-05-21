@@ -3,6 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title>Self Evaluation</q-toolbar-title>
+        <button @click="handleLogOut">Logout</button>
       </q-toolbar>
     </q-header>
 
@@ -208,13 +209,26 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "MainLayout",
 
+  // beforeCreate() {
+  //   if (!this.getLoginStatus) {
+  //     console.log("if",this.getLoginStatus);
+  //     this.$router.push('/');
+  //   }
+  // },
+
   mounted: function() {
-    this.neeVal();
-    this.fetchDistrict();
-    this.fetchOptions();
+    // if(this.getLoginStatus){
+    //   console.log("------mounted---",this.getLoginStatus)
+      this.neeVal();
+      this.fetchDistrict();
+      this.fetchOptions();
+    // }else{
+    //   console.log("------else---",this.getLoginStatus)
+    //   this.$router.push('/');
+    // }
   },
   methods: {
-    ...mapActions("covid", ["search", 'fetchDistrict', 'fetchOptions']),
+    ...mapActions("covid", ["search", 'fetchDistrict', 'fetchOptions', 'logout']),
     neeVal(val) {
       var requestObject = {
         fromDate: new Date(this.fromDate),
@@ -224,7 +238,7 @@ export default {
         gender: this.selGender === null ? [] : this.selGender,
         temperature: this.selTemp === null ? [] : this.selTemp,
         addSymptoms: this.selAdditional === null ? [] : this.selAdditional,
-        district: this.selDistrict === null ? [] : this.selDistrict,
+        district: this.selDistrict === null ? ['0'] : this.selDistrict,
         risk: this.selRisk === null ? [] : this.selRisk,
         symptoms: this.selSymptoms === null ? [] : this.selSymptoms,
         travelHistory: this.selExposure === null ? [] : this.selExposure,
@@ -233,6 +247,9 @@ export default {
       };
       console.log(JSON.stringify(requestObject));
       this.search(requestObject);
+    },
+    handleLogOut: function(){
+      this.logout();
     },
     hideDate(refName) {
       this.$refs[refName].hide();
@@ -248,7 +265,8 @@ export default {
       "getRisk",
       "getExposure",
       "getUnderlying",
-      "getProgress"
+      "getProgress",
+      "getLoginStatus"
     ]),
     fromDate: {
       get: function() {

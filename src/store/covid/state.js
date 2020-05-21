@@ -23,6 +23,7 @@ export default function () {
       "Diabetes", "Heart Disease", "High Blood Pressure", "Kidney Disease", "Lung disease", "None of These", "Reduced Immunity", "Stroke"
     ],
     progress: ["Improved", "No Change", "Worsened", "Worsened Considerably"],
-    options: []
+    options: [],
+    loggedIn: ''
   };
 }
