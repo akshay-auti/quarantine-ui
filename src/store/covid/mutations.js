@@ -5,7 +5,6 @@ export function someMutation (state) {
 
 export const LOGIN_SUCCESS = (state) => {
     state.loggedIn = true;
-    console.log("login sucess----------->",state.loggedIn);
 };
 
 export const LOGOUT = (state) => {

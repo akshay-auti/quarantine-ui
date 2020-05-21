@@ -31,17 +31,34 @@ export default function (/* { store, ssrContext } */) {
   })
 
   Router.beforeEach((to, from, next) => {
-    console.log("store.getters.getLoginStatus",localStorage.getItem('user'))
-      if (!localStorage.getItem('user')) {
-        next('/')
-        return
-      }
-      else{
-        console.log("else")
-        next()
-      }
-       
-  })
+    // redirect to login page if not logged in and trying to access a restricted page
+    // const publicPages = ['/'];
+    // const authRequired = !publicPages.includes(to.path);
+    const loggedIn = localStorage.getItem('user')
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (loggedIn) {
+    return next()
+    }
+    return next({name: 'login'})
+    }
+    next()
+    })
+  
+
+  // Router.beforeEach((to, from, next) => {
+  //   // redirect to login page if not logged in and trying to access a restricted page
+  //   const publicPages = ['/login'];
+  //   const authRequired = !publicPages.includes(to.path);
+  //   const loggedIn = localStorage.getItem('user')
+  //   console.log("loggedIn----", loggedIn)
+    
+  //   if (authRequired && !loggedIn ) {
+  //   next('/login')
+  //   } else {
+  //   next()
+  //   }
+    
+  //   })
 
   return Router
 }

@@ -209,23 +209,10 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "MainLayout",
 
-  // beforeCreate() {
-  //   if (!this.getLoginStatus) {
-  //     console.log("if",this.getLoginStatus);
-  //     this.$router.push('/');
-  //   }
-  // },
-
-  mounted: function() {
-    // if(this.getLoginStatus){
-    //   console.log("------mounted---",this.getLoginStatus)
+mounted: function() {
       this.neeVal();
       this.fetchDistrict();
       this.fetchOptions();
-    // }else{
-    //   console.log("------else---",this.getLoginStatus)
-    //   this.$router.push('/');
-    // }
   },
   methods: {
     ...mapActions("covid", ["search", 'fetchDistrict', 'fetchOptions', 'logout']),
@@ -250,6 +237,7 @@ export default {
     },
     handleLogOut: function(){
       this.logout();
+      this.$router.push('/');
     },
     hideDate(refName) {
       this.$refs[refName].hide();

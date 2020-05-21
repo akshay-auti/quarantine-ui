@@ -20,7 +20,6 @@ const url = (age_gte = '', age_lte = '', from_date = '', to_date = '', temperatu
 
 export default function authHeader() {
     let user = JSON.parse(localStorage.getItem('user'));
-    
     if (user) {
         return {headers: { Authorization: 'Token ' + user }};
     } else {
@@ -30,7 +29,8 @@ export default function authHeader() {
 
 export const login = ({ commit }, cred) => {
     axios.post(loginUrl, cred).then(response => 
-    {if (response.data.token) {
+    {
+        if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data.token));
     }
     commit("LOGIN_SUCCESS");
@@ -65,18 +65,11 @@ export const fetchSuspect = ({ commit }) => {
 
 export const paginationSearch = ({ commit }, paginationURL) => {
     axios
-        .post(loginUrl, { username: "dashboard", password: "keD6JXiWemGrg5u" })
+        .get(paginationURL, authHeader())
         .then(response => {
-            const auth = { headers: { Authorization: `Token ${response.data.token}` } };
-            if (auth) {
-                axios
-                    .get(paginationURL, auth)
-                    .then(response => {
-                        commit("UPDATE_QUIZ_DATA", response.data);
-                    })
-                    .catch();
-            }
-        }).catch(error => console.log(error));
+            commit("UPDATE_QUIZ_DATA", response.data);
+        })
+        .catch(error => console.log(error));
 };
 
 export const fetchDistrict = ({ commit }) => {
