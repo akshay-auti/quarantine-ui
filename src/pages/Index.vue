@@ -241,7 +241,7 @@ export default {
 .display-card {
   flex: 1;
   flex-basis: 20%;
-  margin: 20px;
+  margin: 20px 5px;
 }
 
 .content {
@@ -266,10 +266,10 @@ export default {
     /* border: 1px solid blue; */
     float: right;
     font-size: 15px;
-    margin-left: 1095px;
+    margin-left: 90%;
 }
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 body {
   font-family: "Open Sans", sans-serif;
 }
